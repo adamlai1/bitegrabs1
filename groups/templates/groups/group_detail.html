@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ group.name }}</title>
+    <style>
+        .btn {
+            padding: 0.5em 1em;
+            color: white;
+            background-color: #dc3545; /* Bootstrap's Danger color */
+            border: none;
+            border-radius: 3px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-sm {
+            font-size: 0.875em;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ group.name }}</h1>
+
+    <p>Leader: {{ leader_name }}</p>
+
+    <h2>Members:</h2>
+    <ul>
+        {% for member in members %}
+            <li>
+                {% if member.user %}
+                    {{ member.user.username }}
+                {% else %}
+                    {{ member.guest_name }}
+                {% endif %}
+                - {{ member.location }} - {{ member.preferences }}
+
+                {% if group.leader == request.user %}
+                    <!-- Show Kick button only for the leader -->
+                    <a href="{% url 'kick_member' group.id member.id %}" class="btn btn-danger btn-sm">
+                        Kick
+                    </a>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No members yet.</li>
+        {% endfor %}
+    </ul>
+
+    <p>Share this link to invite others:</p>
+    <p><a href="{{ invitation_link }}">{{ invitation_link }}</a></p>
+
+    {% if is_member %}
+        <a href="{% url 'submit_preferences' group.id %}">Submit Your Preferences</a>
+    {% endif %}
+
+    {% if group.leader == request.user %}
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="calculate_spot">Calculate Best Food Spot</button>
+        </form>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

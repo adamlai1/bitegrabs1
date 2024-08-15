@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Your Name</title>
+</head>
+<body>
+    <h1>Enter Your Name to Join the Group</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="guest_name" placeholder="Your Name" required>
+        <button type="submit">Join Group</button>
+    </form>
+</body>
+</html>

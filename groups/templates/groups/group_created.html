@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Group Created</title>
+</head>
+<body>
+    <h1>{{ group.name }} Created!</h1>
+    <p>Share this link to invite others to join your group:</p>
+    <p><a href="{{ invitation_link }}">{{ invitation_link }}</a></p>
+    <a href="{% url 'group_detail' group.id %}">Go to Group</a>
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

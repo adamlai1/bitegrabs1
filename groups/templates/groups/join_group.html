@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Join Group {{ group.name }}</title>
+</head>
+<body>
+    <h1>Join Group {{ group.name }}</h1>
+
+    <!-- Login Section -->
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.username.label_tag }} {{ form.username }}
+        {{ form.password.label_tag }} {{ form.password }}
+        <button type="submit" name="login">Login</button>
+    </form>
+
+    <!-- Guest Section -->
+    <h2>Continue as Guest</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="guest_name" placeholder="Your Name">
+        <button type="submit" name="join_as_guest">Join as Guest</button>
+    </form>
+</body>
+</html>

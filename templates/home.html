@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BiteGrabs - Home</title>
+</head>
+<body>
+    <h1>Welcome to BiteGrabs</h1>
+    <p>This is the home page.</p>
+
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }}! You are logged in.</p>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <p>You are not logged in. <a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">Register</a></p>
+    {% endif %}
+    <h1>Welcome, {{ request.user.username }}</h1>
+    <a href="{% url 'create_group' %}">Create Group</a>
+</body>
+</html>

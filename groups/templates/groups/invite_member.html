@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invite Member to {{ group.name }}</title>
+</head>
+<body>
+    <h1>Invite a Member to {{ group.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Invite Member</button>
+    </form>
+    <a href="{% url 'group_detail' group.id %}">Back to Group</a>
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

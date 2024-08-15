@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Preferences for {{ group.name }}</title>
+</head>
+<body>
+    <h1>Submit Your Preferences for {{ group.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Preferences</button>
+    </form>
+    <a href="{% url 'group_detail' group.id %}">Back to Group</a>
+</body>
+</html>

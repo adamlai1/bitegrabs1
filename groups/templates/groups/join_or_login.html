@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Join Group</title>
+</head>
+<body>
+    <h1>Join {{ group.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Login</h2>
+        {{ form.as_p }}
+        <button type="submit" name="login">Login</button>
+    </form>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Continue as Guest</h2>
+        <input type="text" name="guest_name" placeholder="Your Name" required>
+        <button type="submit">Join as Guest</button>
+    </form>
+</body>
+</html>
